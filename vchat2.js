@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     textDistribute();
+    startBackgroundSound();
 
     function enableClick() {
         clickEnabled = true;
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(selectedBoxes[1].textContent);
                 // Matching content, increase score and remove boxes
                 score += 5;
+                scoreSound();
                 selectedBoxes.forEach(box => {
                     setTimeout(() => {
                         box.classList.add("finale");
@@ -57,9 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 // alert("Congratulations! You've won!");
                 boxes.forEach(box => {
                     // box.remove();
-                    box.classList.add("rem");
+                    setTimeout(() => {
+                        box.classList.add("rem");
+                        showMsg();
+                        finalSound();
+                    }, 800);
+
                 });
-                showMsg();
+
                 // startGame();
 
             };
@@ -166,3 +173,34 @@ function hideMsg() {
     show.innerHTML = "";
 };
 
+// sound function goes here
+
+function startBackgroundSound() {
+    const SoundBack = new Audio("./sounds/back.wav");
+    SoundBack.loop = true;
+
+    // Assuming you have a button with id "toggleButton" to start and stop the sound
+    const toggleButton = document.getElementById("toggleButton");
+
+    toggleButton.addEventListener("click", function () {
+        if (SoundBack.paused) {
+            // If the sound is paused, play it
+            SoundBack.play();
+            toggleButton.innerText = "🔊";
+        } else {
+            // If the sound is playing, pause it
+            SoundBack.pause();
+            toggleButton.innerText = "🔇";
+        }
+    });
+};
+
+function scoreSound() {
+    const poidio = new Audio("./sounds/point.wav");
+    poidio.play();
+};
+
+function finalSound() {
+    const winner = new Audio("./sounds/winner.wav");
+    winner.play();
+};

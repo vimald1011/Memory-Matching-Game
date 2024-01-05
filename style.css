@@ -154,6 +154,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 10%;
+  align-items: center;
 }
 
 .msg {
@@ -161,4 +162,13 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 10px;
   text-align: center;
+}
+
+.bt {
+  width: 50px;
+  font-size: xx-large;
+  border: 1px solid green;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
 }
