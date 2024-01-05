@@ -159,4 +159,6 @@ body {
 .msg {
   font-weight: 800;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 10px;
+  text-align: center;
 }
