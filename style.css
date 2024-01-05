@@ -12,6 +12,13 @@ body {
     justify-content: center;
 }
 
+#main {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 #container {
     background-color: azure;
     height: 530px;
@@ -32,27 +39,14 @@ body {
     border-radius: 10px;
     outline: none;
     color: #fff;
-    font-size: 2em;
+    font-size: 5em;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative
+    position: relative;
+    /* user-select: none; */
 }
 
-
-/* .hide::after {
-    background-color: brown;
-    height: 150px;
-    width: 150px;
-    border-radius: 10px;
-    outline: none;
-    color: #fff;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative
-} */
 .hide::after {
     content: "";
     background-color: #3FBB1D;
@@ -73,6 +67,9 @@ body {
 
 }
 
+.rem {
+    display: none;
+}
 
 .show {
     background-color: #134D04;
@@ -88,4 +85,78 @@ body {
     position: relative;
 }
 
+.btn {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
 
+.btn:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.btn:main,
+.btn:focus {
+  user-select: auto;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.btn:disabled {
+  cursor: auto;
+}
+
+.btn:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+
+.bttn {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+}
+
+.msg {
+  font-weight: 800;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

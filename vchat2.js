@@ -4,6 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
     var score = 0;
     var clickEnabled = true; // Variable to track whether click events are enabled
 
+    boxes.forEach(box => {
+        box.classList.remove("rem");
+    })
+
+    boxes.forEach(box => {
+        box.draggable = false; // Disable drag-and-drop
+        box.addEventListener("dragstart", function (e) {
+            e.preventDefault();
+        });
+    });
+
+
     textDistribute();
 
     function enableClick() {
@@ -12,10 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function checkMatch() {
         if (selectedBoxes.length === 2 && clickEnabled) {
+            console.log(selectedBoxes);
             clickEnabled = false; // Disable click events
             setTimeout(enableClick, 1000); // Enable click events after 1 second
 
             if (selectedBoxes[0].textContent === selectedBoxes[1].textContent) {
+                console.log(selectedBoxes[0].textContent);
+                console.log(selectedBoxes[1].textContent);
                 // Matching content, increase score and remove boxes
                 score += 5;
                 selectedBoxes.forEach(box => {
@@ -41,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (score == 30) {
                 // alert("Congratulations! You've won!");
                 boxes.forEach(box => {
-                    box.remove();
+                    // box.remove();
+                    box.classList.add("rem");
                 });
                 showMsg();
                 // startGame();
@@ -82,6 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         boxes.forEach((box, i) => {
             box.innerHTML = c[i];
+            box.classList.add("hide");
+            box.classList.remove("finale");
+            box.classList.remove("selected");
+            // score = 0;
         });
 
     };
@@ -95,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Add box to the selectedBoxes array
                 selectedBoxes.push(box);
-                
+
                 // Mark the box as selected
                 box.classList.add("selected");
 
@@ -107,11 +127,31 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // let newG = document.querySelector("#stGame");
+    // newG.addEventListener("click", function () {
+    //     textDistribute();
+    //     selectedBoxes = [];
+    //     hideMsg();
+    //     score = 0;
+
+    // });
+
     let newG = document.querySelector("#stGame");
     newG.addEventListener("click", function () {
+        // Reset the state of the boxes in the HTML
+        boxes.forEach(box => {
+            box.classList.remove("finale", "selected", "rem");
+            box.classList.add("hide");
+        });
+
+        // Reset other game-related variables and elements
         textDistribute();
-        
+        selectedBoxes = [];
+        hideMsg();
+        score = 0;
+        clickEnabled = true; // Make sure click events are enabled
     });
+
 });
 
 function showMsg() {
@@ -120,15 +160,9 @@ function showMsg() {
     show.innerHTML = "Congratulations! You've matched all boxes!";
 };
 
-// function showMsg() {
-//     let show = document.querySelector("#show");
-//     show.classList.add("show");
-
-//     // Log a message to check if the class is added
-//     if (show.classList.contains("show")) {
-//         console.log("Class 'show' added to the element with ID 'show'");
-//     }
-
-//     show.innerHTML = "done";
-// };
+function hideMsg() {
+    let show = document.querySelector("#show");
+    show.classList.remove("show");
+    show.innerHTML = "";
+};
 
